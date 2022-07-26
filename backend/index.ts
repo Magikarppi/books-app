@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 const { PORT } = require('./utils/config');
 const { connectToDatabase } = require('./utils/db');
-const { booksRouter } = require('./controllers/books');
+const booksRouter = require('./controllers/books');
 
 const app = express();
 
