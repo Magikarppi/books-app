@@ -10,7 +10,7 @@ Book.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    book: {
+    bookname: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
