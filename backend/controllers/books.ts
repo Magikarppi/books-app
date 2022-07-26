@@ -29,10 +29,27 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.delete('/:id', bookFinder, async (req: any, res: Response) => {
-  if (req.book) {
-    await req.book.destroy();
+  try {
+    if (req.book) {
+      await req.book.destroy();
+    }
+    res.status(204).end();
+  } catch (error: any) {
+    console.log(error);
+    res.status(400).send({ error: error.message });
   }
-  res.status(204).end();
+});
+
+router.put('/:id', bookFinder, async (req: any, res: any) => {
+  try {
+    if (req.book) {
+      await req.book.update({ ...req.body });
+      res.json(req.book);
+    }
+  } catch (error: any) {
+    console.log(error);
+    res.status(400).send({ error: error.message });
+  }
 });
 
 module.exports = router;
