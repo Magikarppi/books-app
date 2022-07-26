@@ -1,7 +1,12 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import Book from '../models/book';
 
 const router = express.Router();
+
+const bookFinder = async (req: Request, res: Response, next: NextFunction) => {
+  req.book = await Book.findByPk(req.params.id);
+  next();
+};
 
 router.get('/', async (_req: Request, res: Response) => {
   try {
