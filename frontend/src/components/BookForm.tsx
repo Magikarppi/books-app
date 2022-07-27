@@ -6,14 +6,20 @@ interface ErrorObject {
   author?: string;
 }
 
+interface FormValues {
+  bookName: string;
+  author: string;
+  description: string;
+}
+
 const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
-  const initialValues: BookType = {
+  const initialValues: FormValues = {
     bookName: '',
     author: '',
     description: '',
   };
 
-  const validate = (values: BookType) => {
+  const validate = (values: FormValues) => {
     const { bookName, author } = values;
     let errors: ErrorObject = {};
 
