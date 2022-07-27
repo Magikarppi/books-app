@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
+import { create } from './services/bookService';
 
 const booksDummyData: BookType[] = [
   {
@@ -45,10 +46,10 @@ function App() {
     }
   };
 
-  const handleFormAction = (action: FormActionType) => {
+  const handleFormAction = (action: FormActionType, values: FormValues) => {
     switch (action) {
       case 'save-new':
-        // call server
+        //create()
         break;
       case 'save':
         // call server

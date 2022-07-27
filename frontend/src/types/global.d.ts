@@ -10,11 +10,15 @@ declare global {
   }
 
   type FormActionType = 'save-new' | 'save' | 'delete';
+  interface HandleFormActionProps {
+    action: FormActionType;
+    values: FormValues;
+  }
 
   interface BookFormProps {
     handleBookFormSubmit: (values, SetSubmitting) => void;
     formValues: FormValues;
-    handleFormAction: (action: FormActionType) => void;
+    handleFormAction: (action: FormActionType, values: FormValues) => void;
   }
 
   interface FormValues {
