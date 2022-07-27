@@ -62,13 +62,22 @@ const BookForm = ({
                 <ErrorMessage name="description" component={ErrorComponent} />
               </div>
               <div className="SubmitButtonsContainer">
-                <button onClick={() => handleFormAction('save-new', values)}>
+                <button
+                  type="button"
+                  onClick={() => handleFormAction('save-new', values)}
+                >
                   Save New
                 </button>
-                <button onClick={() => handleFormAction('save', values)}>
+                <button
+                  type="button"
+                  onClick={() => handleFormAction('save', values)}
+                >
                   Save
                 </button>
-                <button onClick={() => handleFormAction('delete', values)}>
+                <button
+                  type="button"
+                  onClick={() => handleFormAction('delete', values)}
+                >
                   Delete
                 </button>
               </div>
