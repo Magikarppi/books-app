@@ -48,6 +48,18 @@ const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
               <Field type="bookName" name="bookName" placeholder="Book name" />
               <ErrorMessage name="bookName" component={ErrorComponent} />
             </div>
+            <div className="Input">
+              <Field type="author" name="author" placeholder="Author" />
+              <ErrorMessage name="author" component={ErrorComponent} />
+            </div>
+            <div className="Input">
+              <Field
+                type="description"
+                name="description"
+                placeholder="Description"
+              />
+              <ErrorMessage name="description" component={ErrorComponent} />
+            </div>
             <div className="SubmitButtonsContainer">
               <button type="submit">Save New</button>
               <button type="submit">Save</button>
