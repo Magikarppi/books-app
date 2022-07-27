@@ -22,6 +22,7 @@ declare global {
   }
 
   interface FormValues {
+    id?: number;
     bookName: string;
     author: string;
     description: string;

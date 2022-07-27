@@ -10,7 +10,7 @@ const createOptions = (method: string, body: any, headers: HeadersInit) => {
   };
 };
 
-export const create = async (data: BookType) => {
+export const create = async (data: FormValues) => {
   try {
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.append('Content-Type', 'application/json');

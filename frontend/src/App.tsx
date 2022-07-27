@@ -49,7 +49,11 @@ function App() {
   const handleFormAction = (action: FormActionType, values: FormValues) => {
     switch (action) {
       case 'save-new':
-        //create()
+        const newBook = { ...values };
+        if (newBook.id) {
+          delete newBook.id;
+        }
+        create(newBook);
         break;
       case 'save':
         // call server
