@@ -44,7 +44,7 @@ const BookForm = ({
             resetForm();
           }}
         >
-          {({ isSubmitting, errors, values }) => (
+          {({ isSubmitting, errors, values, submitForm }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
                 <label htmlFor="bookname">Book name</label>
@@ -64,19 +64,28 @@ const BookForm = ({
               <div className="SubmitButtonsContainer">
                 <button
                   type="button"
-                  onClick={() => handleFormAction('save-new', values)}
+                  onClick={() => {
+                    handleFormAction('save-new', values);
+                    submitForm();
+                  }}
                 >
                   Save New
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleFormAction('save', values)}
+                  onClick={() => {
+                    handleFormAction('save', values);
+                    submitForm();
+                  }}
                 >
                   Save
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleFormAction('delete', values)}
+                  onClick={() => {
+                    handleFormAction('delete', values);
+                    submitForm();
+                  }}
                 >
                   Delete
                 </button>
