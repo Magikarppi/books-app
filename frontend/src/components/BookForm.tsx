@@ -1,6 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 const ErrorComponent = () => <div style={{ color: 'red' }} />;
+interface ErrorObject {
+  bookName?: string;
+  author?: string;
+}
 
 const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
   const initialValues: BookType = {
@@ -9,7 +13,24 @@ const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
     description: '',
   };
 
-  const validate = (values: BookType) => {};
+  const validate = (values: BookType) => {
+    const { bookName, author } = values;
+    let errors: ErrorObject = {};
+
+    if (!bookName) {
+      errors.bookName = 'Book name is required';
+    } else if (bookName.length > 60) {
+      errors.bookName = 'Max length is 60 characters';
+    }
+
+    if (!author) {
+      errors.author = 'Author is required';
+    } else if (author.length > 60) {
+      errors.author = 'Max length is 60 characters';
+    }
+
+    return errors;
+  };
 
   return (
     <>
