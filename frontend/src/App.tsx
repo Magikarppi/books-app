@@ -35,11 +35,30 @@ function App() {
   const handleBookFormSubmit = (
     values: BookType,
     setSubmitting: SetSubmitting
-  ) => {};
+  ) => {
+    console.log('values: ', values);
+  };
 
   const selectBook = (book: BookType) => {
     if (book) {
       setFormValues(book);
+    }
+  };
+
+  const handleFormAction = (action: FormActionType) => {
+    switch (action) {
+      case 'save-new':
+        // call server
+        break;
+      case 'save':
+        // call server
+        break;
+      case 'delete':
+        // call server
+        break;
+
+      default:
+        break;
     }
   };
 
@@ -49,6 +68,7 @@ function App() {
         <div className="ContentSection">
           <BookForm
             handleBookFormSubmit={handleBookFormSubmit}
+            handleFormAction={handleFormAction}
             formValues={formValues}
           />
         </div>

@@ -6,7 +6,11 @@ interface ErrorObject {
   author?: string;
 }
 
-const BookForm = ({ handleBookFormSubmit, formValues }: BookFormProps) => {
+const BookForm = ({
+  handleBookFormSubmit,
+  formValues,
+  handleFormAction,
+}: BookFormProps) => {
   console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
@@ -58,9 +62,13 @@ const BookForm = ({ handleBookFormSubmit, formValues }: BookFormProps) => {
                 <ErrorMessage name="description" component={ErrorComponent} />
               </div>
               <div className="SubmitButtonsContainer">
-                <button type="submit">Save New</button>
-                <button type="submit">Save</button>
-                <button type="submit">Delete</button>
+                <button onClick={() => handleFormAction('save-new')}>
+                  Save New
+                </button>
+                <button onClick={() => handleFormAction('save')}>Save</button>
+                <button onClick={() => handleFormAction('delete')}>
+                  Delete
+                </button>
               </div>
             </Form>
           )}

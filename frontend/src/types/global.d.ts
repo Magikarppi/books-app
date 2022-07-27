@@ -9,9 +9,12 @@ declare global {
     description: string;
   }
 
+  type FormActionType = 'save-new' | 'save' | 'delete';
+
   interface BookFormProps {
     handleBookFormSubmit: (values, SetSubmitting) => void;
     formValues: FormValues;
+    handleFormAction: (action: FormActionType) => void;
   }
 
   interface FormValues {
