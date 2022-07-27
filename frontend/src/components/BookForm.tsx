@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 const ErrorComponent = () => <div style={{ color: 'red' }} />;
 interface ErrorObject {
-  bookName?: string;
+  bookname?: string;
   author?: string;
 }
 
@@ -14,13 +14,13 @@ const BookForm = ({
   console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
-    const { bookName, author } = values;
+    const { bookname, author } = values;
     let errors: ErrorObject = {};
 
-    if (!bookName) {
-      errors.bookName = 'Book name is required';
-    } else if (bookName.length > 60) {
-      errors.bookName = 'Max length is 60 characters';
+    if (!bookname) {
+      errors.bookname = 'Book name is required';
+    } else if (bookname.length > 60) {
+      errors.bookname = 'Max length is 60 characters';
     }
 
     if (!author) {
@@ -47,17 +47,17 @@ const BookForm = ({
           {({ isSubmitting, errors, values }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
-                <label htmlFor="firstName">Book name</label>
-                <Field type="bookName" name="bookName" />
-                <ErrorMessage name="bookName" component={ErrorComponent} />
+                <label htmlFor="bookname">Book name</label>
+                <Field type="bookname" name="bookname" />
+                <ErrorMessage name="bookname" component={ErrorComponent} />
               </div>
               <div className="FormInput">
-                <label htmlFor="firstName">Author</label>
+                <label htmlFor="author">Author</label>
                 <Field type="author" name="author" />
                 <ErrorMessage name="author" component={ErrorComponent} />
               </div>
               <div className="FormInput">
-                <label htmlFor="firstName">Description</label>
+                <label htmlFor="description">Description</label>
                 <Field type="description" name="description" />
                 <ErrorMessage name="description" component={ErrorComponent} />
               </div>

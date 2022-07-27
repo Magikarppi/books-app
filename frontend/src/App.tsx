@@ -1,37 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
-import { create } from './services/bookService';
+import { create, getBooks } from './services/bookService';
+import { fetchWithTimeout } from './utils/utilFuncs';
 
 const booksDummyData: BookType[] = [
   {
     id: 1,
-    bookName: 'The Gunslinger',
+    bookname: 'The Gunslinger',
     author: 'Stephen King',
     description: 'a nice book',
   },
   {
     id: 2,
-    bookName: 'Atomic Habits',
+    bookname: 'Atomic Habits',
     author: 'James Clear',
     description: 'for ppl who want to get s?it done',
   },
   {
     id: 3,
-    bookName: 'Bhagavad Gita',
+    bookname: 'Bhagavad Gita',
     author: 'Vyasa',
     description: '',
   },
 ];
 
 const initialValues: FormValues = {
-  bookName: '',
+  bookname: '',
   author: '',
   description: '',
 };
 
 function App() {
+  const [books, setBooks] = useState<BookType[]>([]);
   const [formValues, setFormValues] = useState<FormValues>(initialValues);
+
+  useEffect(() => {
+    const getAndSetBooks = async () => {
+      const fetchedBooks = await getBooks();
+      if (fetchedBooks) {
+        setBooks(fetchedBooks);
+      }
+    };
+
+    getAndSetBooks();
+  }, []);
 
   const handleBookFormSubmit = (
     values: BookType,
@@ -78,7 +91,7 @@ function App() {
           />
         </div>
         <div className="ContentSection">
-          <BookList books={booksDummyData} selectBook={selectBook} />
+          <BookList books={books} selectBook={selectBook} />
         </div>
       </div>
     </div>

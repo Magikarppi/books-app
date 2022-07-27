@@ -4,7 +4,7 @@ declare global {
   type SetSubmitting = (isSubmitting: boolean) => void;
   interface BookType {
     id: number;
-    bookName: string;
+    bookname: string;
     author: string;
     description: string;
   }
@@ -23,7 +23,7 @@ declare global {
 
   interface FormValues {
     id?: number;
-    bookName: string;
+    bookname: string;
     author: string;
     description: string;
   }
