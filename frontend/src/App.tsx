@@ -32,8 +32,12 @@ function App() {
   return (
     <div className="App">
       <div className="ContentContainer">
-        <BookForm handleBookFormSubmit={handleBookFormSubmit} />
-        <BookList books={booksDummyData} />
+        <div className="ContentSection">
+          <BookForm handleBookFormSubmit={handleBookFormSubmit} />
+        </div>
+        <div className="ContentSection">
+          <BookList books={booksDummyData} />
+        </div>
       </div>
     </div>
   );

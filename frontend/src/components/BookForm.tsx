@@ -40,40 +40,41 @@ const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
 
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validate={(values) => validate(values)}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          handleBookFormSubmit(values, setSubmitting);
-          resetForm();
-        }}
-      >
-        {({ isSubmitting, errors }) => (
-          <Form>
-            <div className="Input">
-              <Field type="bookName" name="bookName" placeholder="Book name" />
-              <ErrorMessage name="bookName" component={ErrorComponent} />
-            </div>
-            <div className="Input">
-              <Field type="author" name="author" placeholder="Author" />
-              <ErrorMessage name="author" component={ErrorComponent} />
-            </div>
-            <div className="Input">
-              <Field
-                type="description"
-                name="description"
-                placeholder="Description"
-              />
-              <ErrorMessage name="description" component={ErrorComponent} />
-            </div>
-            <div className="SubmitButtonsContainer">
-              <button type="submit">Save New</button>
-              <button type="submit">Save</button>
-              <button type="submit">Delete</button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <div className="BookForm">
+        <Formik
+          initialValues={initialValues}
+          validate={(values) => validate(values)}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            handleBookFormSubmit(values, setSubmitting);
+            resetForm();
+          }}
+        >
+          {({ isSubmitting, errors }) => (
+            <Form style={{ height: '70%', width: '80%' }}>
+              <div className="FormInput">
+                <label htmlFor="firstName">Book name</label>
+                <Field type="bookName" name="bookName" />
+                <ErrorMessage name="bookName" component={ErrorComponent} />
+              </div>
+              <div className="FormInput">
+                <label htmlFor="firstName">Author</label>
+                <Field type="author" name="author" />
+                <ErrorMessage name="author" component={ErrorComponent} />
+              </div>
+              <div className="FormInput">
+                <label htmlFor="firstName">Description</label>
+                <Field type="description" name="description" />
+                <ErrorMessage name="description" component={ErrorComponent} />
+              </div>
+              <div className="SubmitButtonsContainer">
+                <button type="submit">Save New</button>
+                <button type="submit">Save</button>
+                <button type="submit">Delete</button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </>
   );
 };

@@ -1,6 +1,6 @@
 const BookList = ({ books }: BookListProps) => {
   return (
-    <div className="BookListContainer">
+    <div className="BookList">
       {books.map((book) => (
         <div className="BookBlock" key={book.id}>
           <div className="BookElement">{book.bookName}</div>
