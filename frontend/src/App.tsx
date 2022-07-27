@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
 
@@ -19,23 +19,38 @@ const booksDummyData: BookType[] = [
     id: 3,
     bookName: 'Bhagavad Gita',
     author: 'Vyasa',
-    description: 'Epic classic',
+    description: '',
   },
 ];
 
+const initialValues: FormValues = {
+  bookName: '',
+  author: '',
+  description: '',
+};
+
 function App() {
+  const [formValues, setFormValues] = useState<FormValues>(initialValues);
+
   const handleBookFormSubmit = (
     values: BookType,
     setSubmitting: SetSubmitting
   ) => {};
 
-  const selectBook = (book: BookType) => {};
+  const selectBook = (book: BookType) => {
+    if (book) {
+      setFormValues(book);
+    }
+  };
 
   return (
     <div className="App">
       <div className="ContentContainer">
         <div className="ContentSection">
-          <BookForm handleBookFormSubmit={handleBookFormSubmit} />
+          <BookForm
+            handleBookFormSubmit={handleBookFormSubmit}
+            formValues={formValues}
+          />
         </div>
         <div className="ContentSection">
           <BookList books={booksDummyData} selectBook={selectBook} />

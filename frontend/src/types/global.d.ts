@@ -6,11 +6,18 @@ declare global {
     id: number;
     bookName: string;
     author: string;
-    description?: string;
+    description: string;
   }
 
   interface BookFormProps {
     handleBookFormSubmit: (values, SetSubmitting) => void;
+    formValues: FormValues;
+  }
+
+  interface FormValues {
+    bookName: string;
+    author: string;
+    description: string;
   }
 
   interface BookListProps {

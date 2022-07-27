@@ -6,18 +6,8 @@ interface ErrorObject {
   author?: string;
 }
 
-interface FormValues {
-  bookName: string;
-  author: string;
-  description: string;
-}
-
-const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
-  const initialValues: FormValues = {
-    bookName: '',
-    author: '',
-    description: '',
-  };
+const BookForm = ({ handleBookFormSubmit, formValues }: BookFormProps) => {
+  console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
     const { bookName, author } = values;
@@ -42,14 +32,15 @@ const BookForm = ({ handleBookFormSubmit }: BookFormProps) => {
     <>
       <div className="BookForm">
         <Formik
-          initialValues={initialValues}
+          initialValues={formValues}
+          enableReinitialize={true}
           validate={(values) => validate(values)}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             handleBookFormSubmit(values, setSubmitting);
             resetForm();
           }}
         >
-          {({ isSubmitting, errors }) => (
+          {({ isSubmitting, errors, values }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
                 <label htmlFor="firstName">Book name</label>
