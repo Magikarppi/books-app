@@ -2,7 +2,7 @@ import { fetchWithTimeout } from '../utils/utilFuncs';
 
 const baseUrl = '/api/books';
 
-const createOptions = (method: string, body: any, headers: HeadersInit) => {
+const createOptions = (method: string, body?: any, headers?: HeadersInit) => {
   return {
     method,
     body: JSON.stringify(body),
@@ -32,6 +32,15 @@ export const create = async (data: FormValues) => {
     return response.json();
   } catch (error) {
     console.log('Error with saving a new book');
+    console.log(error);
+  }
+};
+
+export const remove = async (id: number) => {
+  try {
+    await fetchWithTimeout(`${baseUrl}/${id}`, createOptions('DELETE'));
+  } catch (error) {
+    console.log('Error with deleting a book');
     console.log(error);
   }
 };
