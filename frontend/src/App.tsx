@@ -29,6 +29,8 @@ function App() {
     setSubmitting: SetSubmitting
   ) => {};
 
+  const selectBook = (book: BookType) => {};
+
   return (
     <div className="App">
       <div className="ContentContainer">
@@ -36,7 +38,7 @@ function App() {
           <BookForm handleBookFormSubmit={handleBookFormSubmit} />
         </div>
         <div className="ContentSection">
-          <BookList books={booksDummyData} />
+          <BookList books={booksDummyData} selectBook={selectBook} />
         </div>
       </div>
     </div>

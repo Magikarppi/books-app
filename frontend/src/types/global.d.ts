@@ -15,5 +15,6 @@ declare global {
 
   interface BookListProps {
     books: BookType[];
+    selectBook: (book: BookType) => void;
   }
 }
