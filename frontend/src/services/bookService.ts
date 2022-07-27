@@ -10,6 +10,16 @@ const createOptions = (method: string, body: any, headers: HeadersInit) => {
   };
 };
 
+export const getBooks = async () => {
+  try {
+    const response = await fetchWithTimeout(baseUrl);
+    console.log('response ', response);
+    return response.json();
+  } catch (error) {
+    console.log('Error getting books', error);
+  }
+};
+
 export const create = async (data: FormValues) => {
   try {
     const requestHeaders: HeadersInit = new Headers();
@@ -21,6 +31,7 @@ export const create = async (data: FormValues) => {
     );
     return response.json();
   } catch (error) {
+    console.log('Error with saving a new book');
     console.log(error);
   }
 };
