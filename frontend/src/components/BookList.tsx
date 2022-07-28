@@ -7,8 +7,12 @@ const BookList = ({ books, selectBook }: BookListProps) => {
           key={book.id}
           onClick={() => selectBook(book)}
         >
-          <div className="BookElement">{book.bookname}</div>
-          <div className="BookElement">{book.author}</div>
+          <div className="BookElement" id="Author">
+            {book.author}
+          </div>
+          <div className="BookElement" id="BookName">
+            {book.bookname}
+          </div>
         </div>
       ))}
     </div>
