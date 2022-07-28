@@ -46,20 +46,17 @@ function App() {
     getAndSetBooks();
   }, []);
 
-  const handleBookFormSubmit = (
-    values: BookType,
-    setSubmitting: SetSubmitting
-  ) => {
-    console.log('values: ', values);
-  };
-
   const selectBook = (book: BookType) => {
     if (book) {
       setFormValues(book);
     }
   };
 
-  const handleFormAction = (action: FormActionType, values: FormValues) => {
+  const handleFormAction = (
+    action: FormActionType,
+    values: FormValues,
+    setSubmitting: SetSubmitting
+  ) => {
     switch (action) {
       case 'save-new':
         const newBook = { ...values };
@@ -67,6 +64,7 @@ function App() {
           delete newBook.id;
         }
         create(newBook);
+        setSubmitting(false);
         break;
       case 'save':
         // call server
@@ -75,9 +73,11 @@ function App() {
         if (values.id) {
           remove(values.id);
         }
+        setSubmitting(false);
         break;
 
       default:
+        setSubmitting(false);
         break;
     }
   };
@@ -87,7 +87,6 @@ function App() {
       <div className="ContentContainer">
         <div className="ContentSection">
           <BookForm
-            handleBookFormSubmit={handleBookFormSubmit}
             handleFormAction={handleFormAction}
             formValues={formValues}
           />

@@ -6,11 +6,7 @@ interface ErrorObject {
   author?: string;
 }
 
-const BookForm = ({
-  handleBookFormSubmit,
-  formValues,
-  handleFormAction,
-}: BookFormProps) => {
+const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
   console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
@@ -40,11 +36,25 @@ const BookForm = ({
           enableReinitialize={true}
           validate={(values) => validate(values)}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            handleBookFormSubmit(values, setSubmitting);
+            const buttonPressed = document.activeElement?.id;
+            switch (buttonPressed) {
+              case 'save-new':
+                handleFormAction('save-new', values, setSubmitting);
+                break;
+              case 'save':
+                handleFormAction('save', values, setSubmitting);
+                break;
+              case 'delete':
+                handleFormAction('delete', values, setSubmitting);
+                break;
+
+              default:
+                break;
+            }
             resetForm();
           }}
         >
-          {({ isSubmitting, errors, values, submitForm }) => (
+          {({ isSubmitting, submitForm }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
                 <label htmlFor="bookname">Book name</label>
@@ -64,8 +74,8 @@ const BookForm = ({
               <div className="SubmitButtonsContainer">
                 <button
                   type="button"
+                  id="save-new"
                   onClick={() => {
-                    handleFormAction('save-new', values);
                     submitForm();
                   }}
                 >
@@ -73,8 +83,8 @@ const BookForm = ({
                 </button>
                 <button
                   type="button"
+                  id="save"
                   onClick={() => {
-                    handleFormAction('save', values);
                     submitForm();
                   }}
                 >
@@ -82,8 +92,8 @@ const BookForm = ({
                 </button>
                 <button
                   type="button"
+                  id="delete"
                   onClick={() => {
-                    handleFormAction('delete', values);
                     submitForm();
                   }}
                 >

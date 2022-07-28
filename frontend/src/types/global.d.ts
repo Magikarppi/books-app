@@ -13,12 +13,16 @@ declare global {
   interface HandleFormActionProps {
     action: FormActionType;
     values: FormValues;
+    setSubmitting: SetSubmitting;
   }
 
   interface BookFormProps {
-    handleBookFormSubmit: (values, SetSubmitting) => void;
     formValues: FormValues;
-    handleFormAction: (action: FormActionType, values: FormValues) => void;
+    handleFormAction: (
+      action: FormActionType,
+      values: FormValues,
+      setSubmitting: SetSubmitting
+    ) => void;
   }
 
   interface FormValues {
