@@ -69,7 +69,19 @@ function App() {
         break;
       case 'save':
         if (values.id) {
-          update(values);
+          const responseData = await update(values);
+
+          const updatedBooks = books.map((book) => {
+            const bookCopy = { ...book };
+
+            if (bookCopy.id !== responseData.id) {
+              return bookCopy;
+            } else {
+              return responseData;
+            }
+          });
+          setBooks(updatedBooks);
+          setSubmitting(false);
         }
         break;
       case 'delete':
