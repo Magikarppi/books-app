@@ -74,6 +74,7 @@ code {
 
 .BookBlock:hover {
   background: greenyellow;
+  cursor: pointer;
 }
 
 .BookElement {
