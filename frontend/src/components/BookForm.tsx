@@ -6,6 +6,12 @@ interface ErrorObject {
   author?: string;
 }
 
+const emptyFormValues: FormValues = {
+  bookname: '',
+  author: '',
+  description: '',
+};
+
 const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
   console.log('formValues: ', formValues);
 

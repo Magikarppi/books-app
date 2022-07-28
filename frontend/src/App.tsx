@@ -59,6 +59,7 @@ function App() {
   ) => {
     switch (action) {
       case 'save-new':
+        setFormValues(initialValues);
         const newBook = { ...values };
         if (newBook.id) {
           delete newBook.id;
@@ -69,6 +70,7 @@ function App() {
         break;
       case 'save':
         if (values.id) {
+          setFormValues(initialValues);
           const responseData = await update(values);
 
           const updatedBooks = books.map((book) => {
@@ -85,8 +87,11 @@ function App() {
         }
         break;
       case 'delete':
+        setFormValues(initialValues);
         if (values.id) {
-          remove(values.id);
+          await remove(values.id);
+          const updatedBooks = books.filter((book) => book.id !== values.id);
+          setBooks(updatedBooks);
         }
         setSubmitting(false);
         break;
