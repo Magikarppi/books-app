@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "cd /frontend && npm install && cd ../backend && npm install && cd..",
-    "start": "cd /backend && npm run start:dev && cd ../frontend && npm start"
+    "install": "npm install && cd frontend && npm install && cd ../backend && npm install && cd..",
+    "start": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\""
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
 }
