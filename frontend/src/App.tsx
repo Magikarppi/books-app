@@ -52,7 +52,7 @@ function App() {
     }
   };
 
-  const handleFormAction = (
+  const handleFormAction = async (
     action: FormActionType,
     values: FormValues,
     setSubmitting: SetSubmitting
@@ -63,7 +63,8 @@ function App() {
         if (newBook.id) {
           delete newBook.id;
         }
-        create(newBook);
+        const responseData = await create(newBook);
+        setBooks([...books, responseData]);
         setSubmitting(false);
         break;
       case 'save':
