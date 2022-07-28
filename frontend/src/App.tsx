@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
-import { create, getBooks, remove } from './services/bookService';
+import { create, getBooks, remove, update } from './services/bookService';
 import { fetchWithTimeout } from './utils/utilFuncs';
 
 const booksDummyData: BookType[] = [
@@ -67,7 +67,9 @@ function App() {
         setSubmitting(false);
         break;
       case 'save':
-        // call server
+        if (values.id) {
+          update(values);
+        }
         break;
       case 'delete':
         if (values.id) {

@@ -47,10 +47,6 @@ export const remove = async (id: number) => {
 
 export const update = async (data: FormValues) => {
   try {
-    if (!data.id) {
-      throw new Error('No id for book to update');
-    }
-
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.append('Content-Type', 'application/json');
 
