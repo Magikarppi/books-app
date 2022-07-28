@@ -34,6 +34,7 @@ const initialValues: FormValues = {
 function App() {
   const [books, setBooks] = useState<BookType[]>([]);
   const [formValues, setFormValues] = useState<FormValues>(initialValues);
+  const [isFormSubmitting, setIsFormSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     const getAndSetBooks = async () => {
@@ -54,8 +55,7 @@ function App() {
 
   const handleFormAction = async (
     action: FormActionType,
-    values: FormValues,
-    setSubmitting: SetSubmitting
+    values: FormValues
   ) => {
     switch (action) {
       case 'save-new':
@@ -66,7 +66,7 @@ function App() {
         }
         const responseData = await create(newBook);
         setBooks([...books, responseData]);
-        setSubmitting(false);
+        setIsFormSubmitting(false);
         break;
       case 'save':
         if (values.id) {
@@ -83,7 +83,7 @@ function App() {
             }
           });
           setBooks(updatedBooks);
-          setSubmitting(false);
+          setIsFormSubmitting(false);
         }
         break;
       case 'delete':
@@ -93,11 +93,11 @@ function App() {
           const updatedBooks = books.filter((book) => book.id !== values.id);
           setBooks(updatedBooks);
         }
-        setSubmitting(false);
+        setIsFormSubmitting(false);
         break;
 
       default:
-        setSubmitting(false);
+        setIsFormSubmitting(false);
         break;
     }
   };
@@ -109,6 +109,8 @@ function App() {
           <BookForm
             handleFormAction={handleFormAction}
             formValues={formValues}
+            isFormSubmitting={isFormSubmitting}
+            setIsFormSubmitting={setIsFormSubmitting}
           />
         </div>
         <div className="ContentSection">

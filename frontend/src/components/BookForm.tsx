@@ -1,4 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const ErrorComponent = () => <div style={{ color: 'red' }} />;
 interface ErrorObject {
@@ -12,7 +13,12 @@ const emptyFormValues: FormValues = {
   description: '',
 };
 
-const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
+const BookForm = ({
+  formValues,
+  handleFormAction,
+  isFormSubmitting,
+  setIsFormSubmitting,
+}: BookFormProps) => {
   console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
@@ -41,17 +47,20 @@ const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
           initialValues={formValues}
           enableReinitialize={true}
           validate={(values) => validate(values)}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          onSubmit={(values, { resetForm }) => {
             const buttonPressed = document.activeElement?.id;
             switch (buttonPressed) {
               case 'save-new':
-                handleFormAction('save-new', values, setSubmitting);
+                handleFormAction('save-new', values);
+                setIsFormSubmitting(true);
                 break;
               case 'save':
-                handleFormAction('save', values, setSubmitting);
+                handleFormAction('save', values);
+                setIsFormSubmitting(true);
                 break;
               case 'delete':
-                handleFormAction('delete', values, setSubmitting);
+                handleFormAction('delete', values);
+                setIsFormSubmitting(true);
                 break;
 
               default:
@@ -60,7 +69,7 @@ const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
             resetForm();
           }}
         >
-          {({ isSubmitting, submitForm }) => (
+          {({ submitForm }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
                 <label htmlFor="bookname">Book name</label>
@@ -78,33 +87,39 @@ const BookForm = ({ formValues, handleFormAction }: BookFormProps) => {
                 <ErrorMessage name="description" component={ErrorComponent} />
               </div>
               <div className="SubmitButtonsContainer">
-                <button
-                  type="button"
-                  id="save-new"
-                  onClick={() => {
-                    submitForm();
-                  }}
-                >
-                  Save New
-                </button>
-                <button
-                  type="button"
-                  id="save"
-                  onClick={() => {
-                    submitForm();
-                  }}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  id="delete"
-                  onClick={() => {
-                    submitForm();
-                  }}
-                >
-                  Delete
-                </button>
+                {isFormSubmitting ? (
+                  <LoadingOutlined spin className="loading" />
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      id="save-new"
+                      onClick={() => {
+                        submitForm();
+                      }}
+                    >
+                      Save New
+                    </button>
+                    <button
+                      type="button"
+                      id="save"
+                      onClick={() => {
+                        submitForm();
+                      }}
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      id="delete"
+                      onClick={() => {
+                        submitForm();
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
               </div>
             </Form>
           )}

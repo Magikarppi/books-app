@@ -1,7 +1,6 @@
 export {};
 
 declare global {
-  type SetSubmitting = (isSubmitting: boolean) => void;
   interface BookType {
     id: number;
     bookname: string;
@@ -13,16 +12,13 @@ declare global {
   interface HandleFormActionProps {
     action: FormActionType;
     values: FormValues;
-    setSubmitting: SetSubmitting;
   }
 
   interface BookFormProps {
     formValues: FormValues;
-    handleFormAction: (
-      action: FormActionType,
-      values: FormValues,
-      setSubmitting: SetSubmitting
-    ) => void;
+    handleFormAction: (action: FormActionType, values: FormValues) => void;
+    isFormSubmitting: boolean;
+    setIsFormSubmitting: (state: boolean) => void;
   }
 
   interface FormValues {
