@@ -44,3 +44,23 @@ export const remove = async (id: number) => {
     console.log(error);
   }
 };
+
+export const update = async (data: FormValues) => {
+  try {
+    if (!data.id) {
+      throw new Error('No id for book to update');
+    }
+
+    const requestHeaders: HeadersInit = new Headers();
+    requestHeaders.append('Content-Type', 'application/json');
+
+    const response = await fetchWithTimeout(
+      `${baseUrl}/${data.id}`,
+      createOptions('PUT', data, requestHeaders)
+    );
+    return response.json();
+  } catch (error) {
+    console.log('Error with updating a book');
+    console.log(error);
+  }
+};
