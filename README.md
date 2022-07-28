@@ -5,9 +5,11 @@
 <br>
 <br>
 <h2>How to start</h2>
-<p>Clone the repository to your computer</p>
-<p>Install npm package manager</p>
-<p>Paste .env file you got via email to the backend folder root level and possibly rename it only to .env if it is not.</p>
-<p>In the project root run ### `npm run install-all` to install all the dependencies</p>
-<p>After installations, in the project root, run ### `npm run start` to start the server and frontend in dev-mode</p>
+<ol>
+</ol>
+<li>Clone the repository to your computer</li>
+<li>Install npm package manager</li>
+<li>Paste .env file you got via email to the backend folder root level and possibly rename it only to .env if it is not.</li>
+<li>In the project root run  ```npm run install-all``` to install all the dependencies</li>
+<li>After installations, in the project root, run ### ```npm run start``` to start the server and frontend in dev-mode</li>
 <p>👨🏻‍💻</p>
