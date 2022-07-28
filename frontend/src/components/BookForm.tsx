@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { LoadingOutlined } from '@ant-design/icons';
 
-const ErrorComponent = () => <div style={{ color: 'red' }} />;
+const ErrorComponent = () => <div className="FormError" />;
 interface ErrorObject {
   bookname?: string;
   author?: string;
@@ -22,6 +22,7 @@ const BookForm = ({
   console.log('formValues: ', formValues);
 
   const validate = (values: FormValues) => {
+    console.log('values in validate', values);
     const { bookname, author } = values;
     let errors: ErrorObject = {};
 
@@ -37,6 +38,7 @@ const BookForm = ({
       errors.author = 'Max length is 60 characters';
     }
 
+    console.log('errors: ', errors);
     return errors;
   };
 
@@ -69,17 +71,21 @@ const BookForm = ({
             resetForm();
           }}
         >
-          {({ submitForm }) => (
+          {({ errors, submitForm }) => (
             <Form style={{ height: '70%', width: '80%' }}>
               <div className="FormInput">
                 <label htmlFor="bookname">Book name</label>
                 <Field type="bookname" name="bookname" />
-                <ErrorMessage name="bookname" component={ErrorComponent} />
+                <ErrorMessage name="bookname">
+                  {(msg) => <div className="FormError">{msg}</div>}
+                </ErrorMessage>
               </div>
               <div className="FormInput">
                 <label htmlFor="author">Author</label>
                 <Field type="author" name="author" />
-                <ErrorMessage name="author" component={ErrorComponent} />
+                <ErrorMessage name="author">
+                  {(msg) => <div className="FormError">{msg}</div>}
+                </ErrorMessage>
               </div>
               <div className="FormInput">
                 <label htmlFor="description">Description</label>

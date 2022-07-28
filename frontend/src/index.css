@@ -122,3 +122,8 @@ input {
   background-color: rgb(58, 58, 53);
   color: rgb(255, 245, 189);
 }
+
+.FormError {
+  color: red;
+  font-size: 11px;
+}
