@@ -3,11 +3,13 @@ import Book from '../models/book';
 
 const router = express.Router();
 
+// Finding one specific book middleware
 const bookFinder = async (req: any, _res: Response, next: NextFunction) => {
   req.book = await Book.findByPk(req.params.id);
   next();
 };
 
+// Getting all books
 router.get('/', async (_req: Request, res: Response) => {
   try {
     const books = await Book.findAll();
@@ -18,6 +20,7 @@ router.get('/', async (_req: Request, res: Response) => {
   }
 });
 
+// Adding a new book
 router.post('/', async (req: Request, res: Response) => {
   try {
     const book = await Book.create(req.body);
@@ -28,6 +31,7 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
+// Deleting a book
 router.delete('/:id', bookFinder, async (req: any, res: Response) => {
   try {
     if (req.book) {
@@ -40,6 +44,7 @@ router.delete('/:id', bookFinder, async (req: any, res: Response) => {
   }
 });
 
+// Updating a book
 router.put('/:id', bookFinder, async (req: any, res: any) => {
   try {
     if (req.book) {

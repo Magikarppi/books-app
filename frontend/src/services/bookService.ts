@@ -2,6 +2,7 @@ import { fetchWithTimeout } from '../utils/utilFuncs';
 
 const baseUrl = '/api/books';
 
+// Creating options for fetch
 const createOptions = (method: string, body?: any, headers?: HeadersInit) => {
   return {
     method,

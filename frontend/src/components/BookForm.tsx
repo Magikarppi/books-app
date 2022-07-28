@@ -1,7 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { LoadingOutlined } from '@ant-design/icons';
-
-const ErrorComponent = () => <div className="FormError" />;
 interface ErrorObject {
   bookname?: string;
   author?: string;
@@ -80,7 +78,6 @@ const BookForm = ({
               <div className="FormInput" id="Description">
                 <label htmlFor="description">Description</label>
                 <Field type="description" name="description" as="textarea" />
-                <ErrorMessage name="description" component={ErrorComponent} />
               </div>
               <div className="SubmitButtonsContainer">
                 {isFormSubmitting ? (

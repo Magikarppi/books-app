@@ -1,3 +1,4 @@
+// Customized fetch that has shorter wait time before the request is aborted
 export const fetchWithTimeout = async (url: string, options?: RequestInit) => {
   const timeout = 12000;
 
