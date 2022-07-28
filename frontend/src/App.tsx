@@ -2,28 +2,6 @@ import React, { useEffect, useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
 import { create, getBooks, remove, update } from './services/bookService';
-import { fetchWithTimeout } from './utils/utilFuncs';
-
-const booksDummyData: BookType[] = [
-  {
-    id: 1,
-    bookname: 'The Gunslinger',
-    author: 'Stephen King',
-    description: 'a nice book',
-  },
-  {
-    id: 2,
-    bookname: 'Atomic Habits',
-    author: 'James Clear',
-    description: 'for ppl who want to get s?it done',
-  },
-  {
-    id: 3,
-    bookname: 'Bhagavad Gita',
-    author: 'Vyasa',
-    description: '',
-  },
-];
 
 const initialValues: FormValues = {
   bookname: '',

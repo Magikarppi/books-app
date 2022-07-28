@@ -7,22 +7,13 @@ interface ErrorObject {
   author?: string;
 }
 
-const emptyFormValues: FormValues = {
-  bookname: '',
-  author: '',
-  description: '',
-};
-
 const BookForm = ({
   formValues,
   handleFormAction,
   isFormSubmitting,
   setIsFormSubmitting,
 }: BookFormProps) => {
-  console.log('formValues: ', formValues);
-
   const validate = (values: FormValues) => {
-    console.log('values in validate', values);
     const { bookname, author } = values;
     let errors: ErrorObject = {};
 
@@ -38,7 +29,6 @@ const BookForm = ({
       errors.author = 'Max length is 60 characters';
     }
 
-    console.log('errors: ', errors);
     return errors;
   };
 
