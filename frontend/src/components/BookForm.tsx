@@ -77,9 +77,9 @@ const BookForm = ({
                   {(msg) => <div className="FormError">{msg}</div>}
                 </ErrorMessage>
               </div>
-              <div className="FormInput">
+              <div className="FormInput" id="Description">
                 <label htmlFor="description">Description</label>
-                <Field type="description" name="description" />
+                <Field type="description" name="description" as="textarea" />
                 <ErrorMessage name="description" component={ErrorComponent} />
               </div>
               <div className="SubmitButtonsContainer">

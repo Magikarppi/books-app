@@ -129,6 +129,14 @@ button {
 input {
   background-color: rgb(58, 58, 53);
   color: rgb(255, 245, 189);
+  border-radius: 1px;
+}
+
+textarea {
+  background-color: rgb(58, 58, 53);
+  color: rgb(255, 245, 189);
+  width: 60%;
+  border-radius: 1px;
 }
 
 .FormError {
