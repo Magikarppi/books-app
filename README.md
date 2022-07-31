@@ -12,3 +12,7 @@ Frontend built with React and Typescript. Backend built with Node.js, Express, T
 4. In the project root run `npm run install-all` to install all the dependencies
 5. After installations, in the project root, run `npm run start` to start the server and frontend in dev-mode
    👨🏻‍💻
+
+## Testing
+
+Some tests are implemented for frontend. You can test frontend by running `npm test` in frontend folder
